@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Tutorial/style.css' %}">
+</head>
+<body>
+    <a href="{% url 'books' %}">Back</a>
+    <form action="{% url 'bookadd' %}" method="post">
+    {% csrf_token %}
+        <label for="book">Book name:</label> <input type="text" id="book" name="book" required>
+        <label for="author">Select an authors name:</label>
+        <select id="author" name="author">
+        {% for author in authors %}
+            <option value="{{ author.name }}">{{ author.name }}</option>
+        {% endfor %}
+        </select>
+        <label for="date">Date of release:</label> <input type="date" id="date" name="date" required>
+        <input type="submit" value="add">
+    </form>
+</body>
+</html>
+
+

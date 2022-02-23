@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Tutorial/style.css' %}">
+</head>
+<body>
+{% for name in author %}<h1>All books for {{ name.name }} :</h1>{% endfor %}
+{% if books %}
+    <ol>{% for book in books %}
+        <li>
+            {{ book.book }}
+            {{ book.released_at }}
+        </li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No books are available for {{ name.name }}</p>
+{% endif %}
+<a href={% url 'books' %}>All books</a>
+<a href={% url 'authors' %}>All authors</a>
+<a href={% url 'home' %}>Back home</a>
+</body>

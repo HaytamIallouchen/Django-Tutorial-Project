@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Tutorial/style.css' %}">
+</head>
+<body>
+    <a href="{% url 'authors' %}">Back</a>
+    <form action="{% url 'authoradd' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Authors name:</label> <input type="text" id="name" name="name" required>
+        <label for="age">Authors age:</label> <input type="number" id="age" name="age" required>
+        <input type="submit" value="add">
+    </form>
+</body>
+</html>

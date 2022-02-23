@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'Tutorial/style.css' %}">
+</head>
+<body>
+    <h1>All authors</h1>
+    <ul>
+    {% for author in object_list %}
+        <li>Name: <a href={% url 'belongstoauthor' author.id %}>{{ author.name }}</a>{{ forloop.counter }}</li>
+        <li>Age: {{ author.age }}</li>
+        <form action="{% url 'authordelete' author.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete author">
+        </form>
+        {{ author.pk }}
+    {% endfor %}
+    </ul>
+    <a href={% url 'authoradd' %}>Add author</a>
+    <a href={% url 'books' %}>All books</a>
+    <a href={% url 'home' %}>Back home</a>
+
+</body>
+</html>
